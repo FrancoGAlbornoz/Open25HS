@@ -1,0 +1,5 @@
+export const home = "/"
+export const aboutus = "/aboutus"
+export const contact = "/contact"
+export const register ="/register"
+export const login = "/login"

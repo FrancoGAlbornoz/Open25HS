@@ -1,0 +1,10 @@
+.carousel-container {
+    width: 40%; /* Reducir el tamaño total del carrusel */
+    margin: auto; /* Centrarlo en la página */
+  }
+  
+  .carousel-image {
+    max-width: 200px; /* Limitar el tamaño de las imágenes */
+    height: auto;
+    margin: auto;
+  }

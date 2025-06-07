@@ -1,0 +1,34 @@
+.custom-footer {
+  background-color: rgb(138, 157, 163);
+  color: white;
+  font-size: 0.95rem;
+}
+
+.footer-logo {
+  width: 100px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-contact i {
+  font-size: 1.4rem;
+  margin-right: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.footer-contact i:hover {
+  color: #ffcccb;
+}

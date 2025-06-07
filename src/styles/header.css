@@ -1,0 +1,54 @@
+.custom-header {
+  font-family: Arial, sans-serif;
+}
+
+.top-bar {
+  border-bottom: 1px solid lightblue;
+}
+
+.logo {
+  height: 100px;
+}
+
+.icon-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  padding-right: 10px;
+  
+  
+}
+.icons{
+    margin-right: 15px;
+}
+
+.nav-bar {
+  border-bottom: 1px solid lightblue;
+  background-color: white;
+}
+
+.nav-items {
+  padding: 10px 15px;
+  color: rgb(112, 150, 162) !important;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav-items:hover{
+  transform: scale(1.05);
+  box-shadow: 0 15px 20px rgba(0, 19, 142, 0.15);
+  border-radius: 4px;
+}
+.nav-item.active {
+  background-color: rgb(164, 187, 194);
+  color: white !important;
+  border-radius: 4px;
+}
+
+.nav-reg{
+    margin-left: 20px;
+}
+.nav-log{
+    margin-left: 20px;
+}
