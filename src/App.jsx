@@ -5,9 +5,10 @@ import Contact from './pages/Contact'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Error from './pages/Error'
-import {home, aboutus, contact, register, login} from './routes/path'
+import {home, aboutus, contact, register, login, products} from './routes/path'
 
 import './App.css'
+import Products from './pages/Products'
 
 
 
@@ -24,6 +25,7 @@ function App() {
           <Route path={contact} element={<Contact/>}/>
           <Route path={register} element={<Register/>}/>
           <Route path={login} element={<Login/>}/>
+          <Route path={products} element={<Products/>}/>
           <Route path='*' element={<Error/>}/>
         </Routes>
       </BrowserRouter>
