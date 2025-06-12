@@ -29,12 +29,13 @@ const Header = () => {
     
       <div className="nav-bar">
         <Nav className="justify-content-center">
-          <Nav.Link href="/Products" className="nav-items ">CHOCOLATES</Nav.Link>
+          <Nav.Link href="/Products" className="nav-items">GALLETAS</Nav.Link>
           <Nav.Link href="/Products" className="nav-items">ALFAJORES</Nav.Link>
+          <Nav.Link href="/Products" className="nav-items ">CHOCOLATES</Nav.Link>
           <Nav.Link href="/Products" className="nav-items">GOLOSINAS</Nav.Link>
-          <Nav.Link href="/Products" className="nav-items">HEALTHY</Nav.Link>
+          <Nav.Link href="/Products" className="nav-items">SNACKS</Nav.Link>
           <Nav.Link href="/Products" className="nav-items">BEBIDAS</Nav.Link>
-          <Nav.Link href="/Products" className="nav-items">REGALERÍA</Nav.Link>
+          <Nav.Link href="/Products" className="nav-items">HEALTHY</Nav.Link>
           <Nav.Link href="/Products" className="nav-items">ALMACÉN</Nav.Link>
 
           <Nav.Link href="/Register" className="nav-item active nav-reg">REGISTRATE</Nav.Link>

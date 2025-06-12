@@ -1,10 +1,80 @@
-.carousel-container {
-    width: 40%; /* Reducir el tamaño total del carrusel */
-    margin: auto; /* Centrarlo en la página */
-  }
-  
-  .carousel-image {
-    max-width: 200px; /* Limitar el tamaño de las imágenes */
-    height: auto;
-    margin: auto;
-  }
+body {
+  font-family: var(--primaryFontVar) !important;
+}
+
+.carousel-item img {
+  height: 600px; /* Ajusta según el tamaño deseado */
+  object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del contenedor */
+}
+
+.productos-carousel-titulo {
+  color: rgba(0, 0, 0, .55);
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  width: 100%;
+}
+
+.categoria-destacada{
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 26px;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  color: #e4090d;
+  font-weight: 800;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+.carousel-duo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+.duo-item {
+  width: 50%; /* Cada imagen ocupa la mitad del carrusel */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.duo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.btn-link-inside {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: lightblue;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-link-inside:hover {
+  background-color: #5e9ee3;
+}
