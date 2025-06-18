@@ -1,0 +1,14 @@
+# Ignorar node_modules de front y back
+front/node_modules/
+back/node_modules/
+
+# Ignorar archivos de entorno
+.env
+.env.local
+
+# Ignorar logs
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
