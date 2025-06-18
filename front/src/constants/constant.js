@@ -1,0 +1,1 @@
+export const BASE_URL_products = "http://localhost:8000/products"
