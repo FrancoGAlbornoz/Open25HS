@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL_products } from '../../constants/constant'
+import { BASE_URL_categorias } from '../../constants/constant'
+import { BASE_URL_marcas } from '../../constants/constant'
+import { BASE_URL_proveedores } from '../../constants/constant'
 import { Card, Button, Container, Row, Col } from 'react-bootstrap'
 
 
@@ -9,10 +12,11 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap'
 const ViewProduct = () => {
 
   const {id} = useParams()
-  const [product, setProduct] =useState(null)
   const navigate = useNavigate()
-
-  
+  const [product, setProduct] =useState(null)
+  const [categorias, setCategorias] = useState([]);
+  const [marcas, setMarcas] = useState([]);
+  const [proveedores, setProveedores] = useState([]);
   
   const getProduct = async () =>{
     try {
@@ -23,8 +27,45 @@ const ViewProduct = () => {
     }
   }
 
+  const getExtras = async () => {
+    try {
+      const catResponse = await axios.get(BASE_URL_categorias);
+      setCategorias(catResponse.data);
+
+      const marResponse = await axios.get(BASE_URL_marcas);
+      setMarcas(marResponse.data);
+
+      const provResponse = await axios.get(BASE_URL_proveedores);
+      setProveedores(provResponse.data);
+
+
+      console.log("CATEGORIAS", catResponse.data);
+      console.log("MARCAS", marResponse.data);
+      console.log("PROVEEDORES", provResponse.data);
+    } catch (error) {
+      console.error("Error al obtener categorías/marcas/proveedores:", error);
+    }
+  };
+
+  const getCategoriaNombre = (id) => {
+    const categoria = categorias.find(cat => cat.idCategoria === id);
+    return categoria ? categoria.nombre : `ID: ${id}`;
+  };
+
+  const getMarcaNombre = (id) => {
+    const marca = marcas.find(m => m.idMarca === id);
+    return marca ? marca.nombre : `ID: ${id}`;
+  };
+
+  const getProveedorNombre = (id) => {
+    const proveedor = proveedores.find(p => p.idProveedor === id);
+    return proveedor ? proveedor.nombre : `ID: ${id}`;
+  };
+
+
   useEffect(() => {
     getProduct()
+    getExtras();
   }, [])
   
   if (!product) return <Container className="mt-4">Cargando producto...</Container>;
@@ -57,9 +98,9 @@ const ViewProduct = () => {
               <Col><strong>Precio Compra:</strong> ${product.precioCompra}</Col>
             </Row>
             <Row className="mb-2">
-              <Col><strong>Proveedor ID:</strong> {product.idProveedor}</Col>
-              <Col><strong>Categoría ID:</strong> {product.idCategoria}</Col>
-              <Col><strong>Marca ID:</strong> {product.idMarca}</Col>
+              <Col><strong>Proveedor:</strong> {getProveedorNombre(product.idProveedor)}</Col>
+              <Col><strong>Categoría:</strong> {getCategoriaNombre(product.idCategoria)}</Col>
+              <Col><strong>Marca:</strong> {getMarcaNombre(product.idMarca)}</Col>
             </Row>
           </Card.Body>
         </Card>
