@@ -3,10 +3,10 @@ const { connection } = require ("../Database/config.js")
 
 //Obtengo todos los productos
 
-const getAllProducts = (req,res) =>{
-    const query = "SELECT * FROM Producto;"
-    connection.query(query,(error,results)=>{
-        if(error) throw error
+const getAllProducts = (req, res) => {
+    const query = "SELECT * FROM Producto WHERE eliminado = 0"
+    connection.query(query, (error, results) => {
+        if (error) throw error
         res.json(results)
     })
 }
@@ -17,7 +17,7 @@ const getProductById = (req,res) =>{
 
     const id = req.params.id // Extrae o requiere(req express) un valor dinamico (ID), de la url
 
-    const query = "SELECT * FROM Producto WHERE idProducto = ?"
+    const query = "SELECT * FROM Producto WHERE idProducto = ? AND eliminado = 0"
 
     connection.query(query, [id], (error, results) => {
         if (error) throw error
@@ -65,8 +65,7 @@ const updateProduct = (req,res) =>{
 const deleteProduct = (req, res) => {
   const id = req.params.id
 
-
-  const query = "DELETE FROM Producto WHERE idProducto = ?"
+  const query = "UPDATE Producto SET eliminado = 1 WHERE idProducto = ?"
 
   connection.query(query, [id], (error, results) => {
     if (error) throw error

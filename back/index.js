@@ -2,6 +2,7 @@
 const express = require ("express")
 const {connection} = require("./Database/config.js")
 const productsRoutes = require("./routes/productRoutes.js")
+const loginRoutes = require('./routes/loginRoutes.js')
 const infoExtraRoutes = require("./routes/extraRoutes");
 const cors = require("cors")
 
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 //app.use uso las paginas de los controllers
+app.use("/login",loginRoutes)// uso controllers y routes de login
 app.use("/products", productsRoutes) // uso controllers y routes de productos
 app.use("/", infoExtraRoutes) // rutas: /categorias, /marcas, /proveedores, /
 
