@@ -51,6 +51,7 @@ const CreateProduct = () => {
     try {
       await axios.post(BASE_URL_products, product);
       navigate("/products"); // o donde tengas tu lista de productos
+      alert("Producto creado correctamente")
     } catch (error) {
       console.error("Error al crear producto:", error);
     }

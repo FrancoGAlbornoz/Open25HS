@@ -6,9 +6,9 @@ import Footer from '../components/Footer'
 const Contact = () => {
   return (
     <div>
-      <Header/>
+      
       <MainContact/>
-      <Footer/>
+     
     </div>
   )
 }

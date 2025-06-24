@@ -7,9 +7,9 @@ import Footer from '../components/Footer'
 const Products = () => {
   return (
     <div>
-        <Header/>
+        
         <MainProducts/>
-        <Footer/>
+        
     </div>
   )
 }

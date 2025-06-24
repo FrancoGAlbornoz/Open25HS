@@ -6,9 +6,9 @@ import Footer from '../components/Footer'
 const AboutUs = () => {
   return (
     <div>
-      <Header/>
+      
       <MainAboutUs/>
-      <Footer/>
+      
     </div>
   )
 }

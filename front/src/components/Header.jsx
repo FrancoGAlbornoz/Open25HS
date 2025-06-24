@@ -37,13 +37,13 @@ const Header = () => {
     
       <div className="nav-bar">
         <Nav className="justify-content-center">
-          <Nav.Link as={Link} to="/Products" className="nav-items">GALLETAS</Nav.Link>
-          <Nav.Link as={Link} to="/Products" className="nav-items">ALFAJORES</Nav.Link>
-          <Nav.Link as={Link} to="/Products" className="nav-items ">CHOCOLATES</Nav.Link>
-          <Nav.Link as={Link} to="/Products" className="nav-items">GOLOSINAS</Nav.Link>
-          <Nav.Link as={Link} to="/Products" className="nav-items">BEBIDAS</Nav.Link>
-          <Nav.Link as={Link} to="/Products" className="nav-items">HEALTHY</Nav.Link>
-          <Nav.Link as={Link} to="/Products" className="nav-items">ALMACÉN</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/galletas" className="nav-items">GALLETAS</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/alfajores" className="nav-items">ALFAJORES</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/chocolates" className="nav-items ">CHOCOLATES</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/golosinas" className="nav-items">GOLOSINAS</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/bebidas" className="nav-items">BEBIDAS</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/healthy" className="nav-items">HEALTHY</Nav.Link>
+          <Nav.Link as={Link} to="/categoria/almacen" className="nav-items">ALMACÉN</Nav.Link>
 
           {user ? (
         <>

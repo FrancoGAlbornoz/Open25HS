@@ -6,9 +6,9 @@ import Footer from '../components/Footer'
 const Register = () => {
   return (
     <div>
-      <Header/>
+      
       <MainRegister/>
-      <Footer/>
+      
     </div>
   )
 }

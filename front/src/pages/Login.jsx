@@ -7,9 +7,9 @@ import { FormText } from 'react-bootstrap'
 const Login = () => {
   return (
     <div>
-      <Header/>
+      
       <MainLogin/>
-      <Footer/>
+      
     </div>
   )
 }

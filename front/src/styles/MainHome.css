@@ -78,3 +78,8 @@ body {
 .btn-link-inside:hover {
   background-color: #5e9ee3;
 }
+
+.card-img-top {
+  height: 300px;
+  object-fit: cover;
+}
