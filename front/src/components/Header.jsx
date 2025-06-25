@@ -7,6 +7,7 @@ import logo from '../assets/logo.png'
 
 const Header = () => {
 
+    
     const user = useLoginStore((state) => state.user);
     const clearUser = useLoginStore((state) => state.clearUser)
     const navigate = useNavigate()
@@ -44,10 +45,13 @@ const Header = () => {
           <Nav.Link as={Link} to="/categoria/bebidas" className="nav-items">BEBIDAS</Nav.Link>
           <Nav.Link as={Link} to="/categoria/healthy" className="nav-items">HEALTHY</Nav.Link>
           <Nav.Link as={Link} to="/categoria/almacen" className="nav-items">ALMACÉN</Nav.Link>
+          <Nav.Link as={Link} to="/Contact" className="nav-item active nav-log">Contactanos</Nav.Link>
 
-          {user ? (
+          {user && (user.rol === 'Empleado' || user.rol === 'Administrador') && (
+          <Nav.Link onClick={() => navigate(user.rol === 'Administrador' ? '/dashboard-admin/productos' : '/dashboard-empleados/productos')} className="nav-item nav-log">Ir al Dashboard</Nav.Link>)}
+        {user ? (
         <>
-          <Nav.Link className="logout-link" onClick={handleLogout}>CERRAR SESIÓN</Nav.Link>
+          <Nav.Link className="logout-link" onClick={handleLogout}>Cerrar Sesion</Nav.Link>
         </>
           ) : (
         <>
@@ -55,7 +59,7 @@ const Header = () => {
           <Nav.Link as={Link} to="/Login" className="nav-item active nav-log">LOGIN</Nav.Link>
         </>
         )}
-          <Nav.Link as={Link} to="/Contact" className="nav-item active nav-log">Contactanos</Nav.Link>
+          
         </Nav>
       </div>
     </header>

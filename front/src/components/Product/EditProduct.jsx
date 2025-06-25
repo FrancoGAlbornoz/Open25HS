@@ -80,9 +80,7 @@ const EditProduct = () => {
       <Container className="mt-4">
         <Button variant="secondary" className="mb-3" onClick={() => navigate(-1)}>Volver</Button>
         <Card>
-          <Card.Header>
-            <h3>Editar Producto</h3>
-          </Card.Header>
+          <Card.Header><h3>Editar Producto</h3></Card.Header>
           <Card.Body>
             <Form onSubmit={handleSubmit}>
               <Row>
