@@ -1,33 +1,39 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-const useLoginStore = create((set,get) => ({
-  user: null,
-  setUser: (userData) => set({ user: userData }),
-  clearUser: () => set({ user: null }),
+const useLoginStore = create(
+  persist(
+    (set, get) => ({
+      user: null,
+      setUser: (userData) => set({ user: userData }),
+      clearUser: () => set({ user: null }),
 
-  hasPermission: (action, table) => {
-    const { user } = get(); // obtiene el usuario logueado desde el estado
-    if (!user) return false; // si no hay usuario logueado, no tiene permiso
+      hasPermission: (action, table) => {
+        const { user } = get();
+        if (!user) return false;
 
-    const permissions = {
-      Administrador: {
-        Producto: ['view', 'create', 'edit', 'delete'], //CRUD
-        Usuario: ['view', 'edit', 'create', 'delete'], //CRUD
-        Cliente: ['view', 'edit', 'delete'] //RUD
+        const permissions = {
+          Administrador: {
+            Producto: ['view', 'create', 'edit', 'delete'],
+            Usuario: ['view', 'edit', 'create', 'delete'],
+          },
+          Empleado: {
+            Producto: ['view', 'create', 'edit', 'delete'],
+          },
+          Cliente: {
+            Producto: ['view'],
+            Cliente: ['view', 'edit'],
+          },
+        };
+
+        return permissions[user.rol]?.[table]?.includes(action);
       },
-      Empleado: {
-        Producto: ['view', 'create', 'edit'], //CRU
-        Cliente: ['view', 'edit'] //RU
-      },
-      Cliente: {
-        Producto: ['view'], //R
-        Cliente: ['view', 'edit'] // puede ver/editar su propio perfil
-      }
-    };
-
-    return permissions[user.rol]?.[table]?.includes(action);
-  }
-
-}));
+    }),
+    {
+      name: 'user-storage', // nombre del key en localStorage
+      partialize: (state) => ({ user: state.user }), // solo persiste 'user'
+    }
+  )
+);
 
 export default useLoginStore;

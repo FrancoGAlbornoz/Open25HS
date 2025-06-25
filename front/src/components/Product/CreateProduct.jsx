@@ -108,9 +108,7 @@ const CreateProduct = () => {
               <Form.Select  name="idProveedor"  value={product.idProveedor} onChange={handleChange}>
                 <option value="">Seleccione un proveedor</option>
                 {proveedores.map((p) => (
-                  <option key={p.idProveedor} value={p.idProveedor}>
-                    {p.nombre}
-                  </option>
+                  <option key={p.idProveedor} value={p.idProveedor}>{p.nombre}</option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -122,9 +120,7 @@ const CreateProduct = () => {
               <Form.Select name="idCategoria" value={product.idCategoria} onChange={handleChange}>
                 <option value="">Seleccione una categoría</option>
                 {categorias.map((c) => (
-                  <option key={c.idCategoria} value={c.idCategoria}>
-                    {c.nombre}
-                  </option>
+                  <option key={c.idCategoria} value={c.idCategoria}>{c.nombre}</option>
                 ))}
               </Form.Select>
             </Form.Group>
@@ -136,9 +132,7 @@ const CreateProduct = () => {
               <Form.Select name="idMarca" value={product.idMarca} onChange={handleChange}>
                 <option value="">Seleccione una marca</option>
                 {marcas.map((m) => (
-                  <option key={m.idMarca} value={m.idMarca}>
-                    {m.nombre}
-                  </option>
+                  <option key={m.idMarca} value={m.idMarca}>{m.nombre}</option>
                 ))}
               </Form.Select>
             </Form.Group>
