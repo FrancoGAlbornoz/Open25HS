@@ -17,7 +17,7 @@ const loginUser = (req, res) => {
       const user = userResults[0]
       if (user.contraseña === contraseña) {
         return res.json({
-          id: user.idUsuario,
+          idUsuario: user.idUsuario,
           nombre: user.nombre,
           mail: user.mail,
           rol: user.rol // 'admin' o 'empleado'
@@ -42,7 +42,7 @@ const loginUser = (req, res) => {
         const cliente = clienteResults[0]
         if (cliente.contraseña === contraseña) {
           return res.json({
-            id: cliente.idCliente,
+            idCliente: cliente.idCliente,
             nombre: cliente.nombre,
             mail: cliente.mail,
             rol: cliente.rol

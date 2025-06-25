@@ -1,11 +1,11 @@
 //Exporto o requiero EXPRESS y mysql
 const express = require ("express")
-const {connection} = require("./Database/config.js")
+const cors = require("cors")
 const productsRoutes = require("./routes/productRoutes.js")
 const loginRoutes = require('./routes/loginRoutes.js')
 const infoExtraRoutes = require("./routes/extraRoutes");
 const productosPublicosRoutes = require("./routes/ProductsCategoriaRoute.js");
-const cors = require("cors")
+const clienteRoutes = require('./routes/clienteRoutes');
 
 //Se instancia la libreria express
 const app = express()
@@ -18,8 +18,9 @@ app.use(cors())
 app.use("/login",loginRoutes)// uso controllers y routes de login
 app.use("/products", productsRoutes) // uso controllers y routes de productos
 app.use("/", infoExtraRoutes) // rutas: /categorias, /marcas, /proveedores, /
-
 app.use("/api", productosPublicosRoutes);
+app.use('/api/clientes', clienteRoutes);
+
 
 
 app.get("/", (req, res) => {
