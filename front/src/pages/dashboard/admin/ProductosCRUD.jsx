@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import CreateProduct from '../../../components/Product/CreateProduct';
-import EditProduct from '../../../components/Product/EditProduct';
-import ViewProduct from '../../../components/Product/ViewProduct';
-import MainProducts from '../../../components/Product/MainProducts';
+import CreateProduct from '../../../components/Producto/CreateProduct';
+import EditProduct from '../../../components/Producto/EditProduct';
+import ViewProduct from '../../../components/Producto/ViewProduct';
+import MainProducts from '../../../components/Producto/MainProducts';
 
 const ProductosCRUD = () => {
   return (

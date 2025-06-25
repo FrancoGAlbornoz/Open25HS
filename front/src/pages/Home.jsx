@@ -8,26 +8,26 @@ const imageData = [
   {
     src: "https://mercadoshops.net.ar/open25/img/cat-alfajores.jpg",
     alt: "Alfajores",
-    link: "/alfajores",
+    link: "/categoria/alfajores",
     label: "ALFAJORES",
   },
   {
     src: "https://mercadoshops.net.ar/open25/img/cat-chocolates.jpg",
     alt: "Chocolates",
-    link: "/chocolates",
+    link: "/categoria/chocolates",
     label: "CHOCOLATES",
   },
   {
     src: "https://mercadoshops.net.ar/open25/img/cat-caramelos.jpg",
     alt: "Caramelos",
-    link: "/caramelos",
+    link: "/categoria/golosinas",
     label: "CARAMELOS",
   },
   {
     src: "https://mercadoshops.net.ar/open25/img/cat-contigo.jpg",
     alt: "Contigo",
-    link: "/contigo",
-    label: "CONTIGO",
+    link: "/categoria/almacen",
+    label: "ALMACEN",
   },
 ];
 const grouped = [];
@@ -76,7 +76,7 @@ const Home = () => {
               className="d-block w-100"
               src="https://http2.mlstatic.com/D_NQ_NP_776343-MLA84363044258_052025-OO.webp"
               alt="Second slide"
-              href="/Products"
+              href="/categoria/alfajores"
             />
           </a>
           <Carousel.Caption></Carousel.Caption>
