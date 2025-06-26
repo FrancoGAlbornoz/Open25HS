@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import useLoginStore from "../../store/useLoginStore";
 import {Form, Button, Container, Row, Col} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import {BASE_URL_products} from '../../constants/constant'
@@ -8,6 +9,7 @@ import {BASE_URL_products} from '../../constants/constant'
 const CreateProduct = () => {
 
   const navigate = useNavigate()
+  const user = useLoginStore((state) => state.user);
 
   const [product, setProduct] = useState(
     {
@@ -50,7 +52,7 @@ const CreateProduct = () => {
     e.preventDefault();
     try {
       await axios.post(BASE_URL_products, product);
-      navigate("/products"); // o donde tengas tu lista de productos
+      navigate(user.rol === 'Administrador' ? '/dashboard-admin/productos' : '/dashboard-empleados/productos'); // o donde tengas tu lista de productos
       alert("Producto creado correctamente")
     } catch (error) {
       console.error("Error al crear producto:", error);

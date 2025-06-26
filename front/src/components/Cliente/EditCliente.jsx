@@ -1,5 +1,5 @@
 // EditClient.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useLoginStore from '../../store/useLoginStore';
 import { useNavigate } from 'react-router-dom';
 import { Button, Form, Card } from 'react-bootstrap';
@@ -8,14 +8,20 @@ import axios from 'axios';
 const EditClient = () => {
   const { user, setUser } = useLoginStore((state) => state);
   const navigate = useNavigate();
-
   const [form, setForm] = useState({
-    nombre: user?.nombre || '',
-    direccion: user?.direccion || '',
-    mail: user?.mail || '',
-    telefono: user?.telefono || '',
-    // agregá más campos si es necesario
+    nombre: '',
+    direccion: '',
+    mail: '',
+    telefono: '',
   });
+
+  useEffect(() => {
+    if (user?.idCliente) {
+      axios.get(`http://localhost:8000/api/clientes/${user.idCliente}`)
+        .then(res => setForm(res.data))
+        .catch(err => console.error('Error al obtener cliente:', err));
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +32,7 @@ const EditClient = () => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8000/api/clientes/${user.idCliente}`, form);
-      setUser({ ...user, ...form }); // actualiza el estado global
+      setUser({ ...user, ...form }); // actualiza estado global
       navigate('/dashboard-cliente/perfil');
       alert('Datos actualizados');
     } catch (error) {
@@ -42,27 +48,26 @@ const EditClient = () => {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Nombre</Form.Label>
-            <Form.Control type="text" name="nombre" value={form.nombre} onChange={handleChange}/>
+            <Form.Control type="text" name="nombre" value={form.nombre} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Direccion</Form.Label>
-            <Form.Control type="text" name="direccion" value={form.direccion} onChange={handleChange}/>
+            <Form.Label>Dirección</Form.Label>
+            <Form.Control type="text" name="direccion" value={form.direccion} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Mail</Form.Label>
-            <Form.Control type="mail" name="mail" value={form.mail} onChange={handleChange}/>
+            <Form.Control type="email" name="mail" value={form.mail} onChange={handleChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Telefono</Form.Label>
-            <Form.Control type="number" name="telefono" value={form.telefono} onChange={handleChange}/>
+            <Form.Label>Teléfono</Form.Label>
+            <Form.Control type="text" name="telefono" value={form.telefono} onChange={handleChange} />
           </Form.Group>
 
           <Button variant="success" type="submit">Guardar Cambios</Button>
         </Form>
-        
       </Card>
       <br />
     </div>

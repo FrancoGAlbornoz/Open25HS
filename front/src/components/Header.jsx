@@ -29,8 +29,8 @@ const Header = () => {
               <Button variant="white" className="p-2 border-1 shadow-sm rounded-circle">
                 <FaSearch style={{ color: "#9CB6BC", fontSize: "1.2rem" }} />
               </Button>
-              <Button variant="white" className="p-2 border-1 shadow-sm rounded-circle">
-                <FaShoppingCart style={{ color: "#9CB6BC", fontSize: "1.2rem" }} />
+              <Button as={Link} to="/carrito" variant="white" className="p-2 border-1 shadow-sm rounded-circle">
+                <FaShoppingCart  style={{ color: "#9CB6BC", fontSize: "1.2rem" }} />
               </Button>
             </Col>
           </Row>

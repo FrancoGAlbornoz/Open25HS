@@ -50,7 +50,7 @@ const Home = () => {
       <br />
       <Carousel>
         <Carousel.Item interval={1000}>
-          <a href="/Products">
+          <a href="/categoria/alfajores">
             <img
               className="d-block w-100"
               src="https://http2.mlstatic.com/D_NQ_NP_748071-MLA74443330157_022024-OO.webp"
@@ -60,7 +60,7 @@ const Home = () => {
           <Carousel.Caption></Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={500}>
-          <a href="/Products">
+          <a href="/categoria/chocolates">
             <img
               className="d-block w-100"
               src="https://http2.mlstatic.com/D_NQ_NP_759010-MLA76379051482_052024-OO.webp"
@@ -71,7 +71,7 @@ const Home = () => {
           <Carousel.Caption></Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <a href="/Products">
+          <a href="/categoria/alfajores">
             <img
               className="d-block w-100"
               src="https://http2.mlstatic.com/D_NQ_NP_776343-MLA84363044258_052025-OO.webp"

@@ -1,5 +1,20 @@
 const {connection} = require('../Database/config');
 
+// Crrear un nuevo cliente
+const createCliente = (req,res) =>{
+  const {nombre, mail, telefono, direccion,contraseña} = req.body
+
+  const query = `INSERT INTO Cliente (nombre, mail, telefono, direccion, contraseña, idRol) VALUES (?,?,?,?,?,3)` 
+  const values = [nombre,mail, telefono,direccion,contraseña];
+
+  connection.query(query,values, (error,results)=>{
+    if (error) throw error
+    res.json({ message: "Cliente creado correctamente", insertId: results.insertId })
+  })
+
+
+}
+
 const getClienteById = (req, res) => {
   const id = req.params.id
 
@@ -34,4 +49,4 @@ const updateCliente = (req,res) =>{
 
 }
 
-module.exports = {  getClienteById, updateCliente };
+module.exports = {  getClienteById, updateCliente,createCliente };

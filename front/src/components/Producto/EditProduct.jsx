@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import useLoginStore from "../../store/useLoginStore";
 import { Form, Button, Container, Card, Row, Col } from "react-bootstrap";
 import { BASE_URL_products, } from "../../constants/constant";
 import { BASE_URL_categorias } from "../../constants/constant";
@@ -10,7 +11,7 @@ import { BASE_URL_proveedores } from "../../constants/constant";
 const EditProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const user = useLoginStore((state) => state.user);
 
   const [product, setProduct] = useState({
     nombre: "",
@@ -44,7 +45,7 @@ const EditProduct = () => {
     e.preventDefault();
     try {
       await axios.put(`${BASE_URL_products}/${id}`, product);
-      navigate("/products");
+      navigate(user.rol === 'Administrador' ? '/dashboard-admin/productos' : '/dashboard-empleados/productos');
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
     }

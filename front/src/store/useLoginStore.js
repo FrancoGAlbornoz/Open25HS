@@ -23,6 +23,7 @@ const useLoginStore = create(
           Cliente: {
             Producto: ['view'],
             Cliente: ['view', 'edit'],
+            Carrito: ['create'],
           },
         };
 
