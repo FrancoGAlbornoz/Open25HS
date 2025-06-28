@@ -6,6 +6,7 @@ import ViewUsuario from '../../../components/Usuario/ViewUsuario';
 import MainUsuarios from '../../../components/Usuario/MainUsuarios';
 
 const UsuariosCRUD = () => {
+  // ADMIN PUEDE VER CRUD DE EMPLEADOS y productos- 
   return (
     <Routes>
       <Route path="/" element={<MainUsuarios />} />

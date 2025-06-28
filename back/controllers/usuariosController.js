@@ -1,4 +1,4 @@
-const {connection} = require('../Database/config');
+const {connection} = require('../Database/config')
 
 
 const getAllUsuario = (req, res) => {
@@ -11,10 +11,10 @@ const getAllUsuario = (req, res) => {
 
 // Crear un nuevo Usuario
 const createUsuario = (req,res) =>{
-  const {nombre, mail,contraseña, idRol} = req.body
+  const {nombre, mail,contraseña, idRol, eliminado, telefono} = req.body
 
-  const query = `INSERT INTO Usuario (nombre, mail, contraseña, idRol) VALUES (?,?,?,2)` 
-  const values = [nombre,mail,contraseña,idRol];
+  const query = `INSERT INTO Usuario (nombre, mail, contraseña,idRol,eliminado,telefono) VALUES (?,?,?,2,?,?)` 
+  const values = [nombre,mail,contraseña,idRol,eliminado,telefono];
 
   connection.query(query,values, (error,results)=>{
     if (error) throw error
@@ -47,10 +47,10 @@ const getUsuarioById = (req, res) => {
 const updateUsuario = (req,res) =>{
   const id = req.params.id;
 
-  const { nombre, mail, contraseña, idRol } = req.body;
+  const { nombre, mail, contraseña, idRol ,eliminado, telefono} = req.body;
 
-  const query = `UPDATE Usuario SET nombre = ?,  mail = ?, idRol = ? WHERE idUsuario = ?`
-  const values = [nombre,  mail, idRol, id]
+  const query = `UPDATE Usuario SET nombre = ?,  mail = ?, idRol = ? ,eliminado = ? ,telefono = ? WHERE idUsuario = ?`
+  const values = [ nombre,  mail, idRol, eliminado, telefono, id]
 
   connection.query(query, values, (error, results) => {
     if (error) throw error

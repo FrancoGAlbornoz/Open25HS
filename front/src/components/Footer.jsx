@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { NavLink } from "react-router-dom"; //
 import "../styles/footer.css";
 import logo from "../assets/logo.png";
 
@@ -12,26 +13,19 @@ const Footer = () => {
             <Col md={3} className="mb-4 mb-md-0 text-center text-md-start">
               <img src={logo} alt="Logo" className="footer-logo mb-3" />
               <p>La cadena de #drugstores más importante de Argentina.</p>
-              <p>
-                Más de 200 sucursales
-                <br />
-                #SiempreHayUnoCerca
-              </p>
+              <p>Más de 200 sucursales<br />#SiempreHayUnoCerca</p>
             </Col>
 
             <Col md={3} className="mb-4 mb-md-0">
               <ul className="footer-links">
                 <li>
-                  <a href="#">CHOCOLATES</a>
+                  <NavLink to="/categoria/chocolates" className="footer-link">CHOCOLATES</NavLink>
                 </li>
                 <li>
-                  <a href="#">ALFAJORES</a>
+                  <NavLink to="/categoria/alfajores" className="footer-link">ALFAJORES</NavLink>
                 </li>
                 <li>
-                  <a href="#">CARAMELOS</a>
-                </li>
-                <li>
-                  <a href="#">CHICLES</a>
+                  <NavLink to="/categoria/golosinas" className="footer-link">GOLOSINAS</NavLink>
                 </li>
               </ul>
             </Col>
@@ -39,13 +33,13 @@ const Footer = () => {
             <Col md={2} className="mb-4 mb-md-0">
               <ul className="footer-links">
                 <li>
-                  <a href="#">HEALTHY</a>
+                  <NavLink to="/categoria/healthy" className="footer-link">HEALTHY</NavLink>
                 </li>
                 <li>
-                  <a href="#">BEBIDAS</a>
+                  <NavLink to="/categoria/bebidas" className="footer-link">BEBIDAS</NavLink>
                 </li>
                 <li>
-                  <a href="#">ALMACÉN</a>
+                  <NavLink to="/categoria/almacen" className="footer-link">ALMACÉN</NavLink>
                 </li>
               </ul>
             </Col>
@@ -60,13 +54,7 @@ const Footer = () => {
                   <i className="bi bi-twitter-x"></i>
                   <i className="bi bi-youtube"></i>
                 </div>
-                <p>
-                  Tel: 1223334444
-                  <br />
-                  ecommerce@open25.com.ar
-                  <br />
-                  Florida 537 CABA Buenos Aires
-                </p>
+                <p>Tel: 1223334444<br />ecommerce@open25.com.ar<br />Florida 537 CABA Buenos Aires</p>
               </div>
             </Col>
           </Row>

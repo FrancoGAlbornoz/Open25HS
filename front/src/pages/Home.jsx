@@ -38,9 +38,9 @@ for (let i = 0; i < imageData.length; i += 2) {
 const Home = () => {
   const [productos, setProductos] = useState([]);
 
+  //Muesrto algunos productos.
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/products") // ajustá si tu endpoint es distinto
+    axios.get("http://localhost:8000/products") 
       .then((res) => setProductos(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -85,6 +85,7 @@ const Home = () => {
       <br />
       <h2 className="productos-carousel-titulo">¡OFERTAS IMPERDIBLES!</h2>
       <div className="d-flex justify-content-around flex-wrap px-4">
+        {/* productos en cards */}
         {productos.slice(0, 4).map((producto) => (
         <div key={producto.idProducto} className="card m-2" style={{ width: "18rem" }}>
           <img src={producto.imagen} className="card-img-top" alt={producto.nombre} />

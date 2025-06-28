@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Form, Card } from 'react-bootstrap';
 import axios from 'axios';
 
+// Permite a un cliente editar su perfil 
 const EditClient = () => {
-  const { user, setUser } = useLoginStore((state) => state);
+  const { user, setUser } = useLoginStore((state) => state); // Obtengo el usuario actual y la función para actualizarlo
   const navigate = useNavigate();
   const [form, setForm] = useState({
     nombre: '',

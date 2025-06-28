@@ -4,14 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
+
   const navigate = useNavigate();
 
+  //campos del formulario de registro
   const [formData, setFormData] = useState({
     nombre: '',
-    email: '',
+    mail: '',
     telefono: '',
     direccion: '',
-    password: '',
+    contraseña: '',
     confirmarPassword: '',
   });
 
@@ -23,12 +25,13 @@ const Register = () => {
     setFormData((previo) => ({ ...previo, [name]: value,}));
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setRegistrado(false);
 
-    if (formData.password !== formData.confirmarPassword) {
+    if (formData.contraseña !== formData.confirmarPassword) {
       setError('Las contraseñas no coinciden.');
       return;
     }
@@ -37,22 +40,23 @@ const Register = () => {
       nombre: formData.nombre,
       direccion: formData.direccion,
       telefono: formData.telefono,
-      mail: formData.email,           // Este campo debe llamarse "mail" para coincidir con el back
-      contraseña: formData.password,  // Este campo debe llamarse "contraseña"
+      mail: formData.mail,           
+      contraseña: formData.contraseña,  
       idRol: 3                        // Rol 3 para cliente
     };
 
     try {
+      //Registramos cliente en la bd. con axios.post
       const res = await axios.post('http://localhost:8000/api/clientes', nuevoCliente);
       console.log('Cliente registrado:', res.data);
 
       setRegistrado(true);
       setFormData({
         nombre: '',
-        email: '',
+        mail: '',
         telefono: '',
         direccion: '',
-        password: '',
+        contraseña: '',
         confirmarPassword: '',
       });
 
@@ -68,6 +72,7 @@ const Register = () => {
     }
   };
 
+  //-------------------------------------
   return (
     <div>
       <Container className="my-5">
@@ -86,7 +91,7 @@ const Register = () => {
 
               <Form.Group className="mb-3" controlId="formEmail">
                 <Form.Label>Correo electrónico</Form.Label>
-                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required/>
+                <Form.Control type="email" name="mail" value={formData.mail} onChange={handleChange} required/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formTelefono">
@@ -101,7 +106,7 @@ const Register = () => {
 
               <Form.Group className="mb-3" controlId="formPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" name="password" value={formData.password} onChange={handleChange} required/>
+                <Form.Control type="password" name="contraseña" value={formData.contraseña} onChange={handleChange} required/>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="formConfirmarPassword">

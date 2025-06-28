@@ -43,7 +43,7 @@ const MainUsuarios = () => {
     <div>
       <Container className="mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Lista de USuarios</h2>
+        <h2>Lista de Usuarios</h2>
 
         {/* <Button variant="primary" onClick={() => navigate("/products/create")}>Crear Producto</Button> */}
         {/* Mostrar botón Crear solo si tiene permiso */}

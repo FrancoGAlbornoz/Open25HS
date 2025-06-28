@@ -1,4 +1,4 @@
-const { connection } = require("../Database/config.js");
+const { connection } = require("../Database/config.js")
 
 const loginUser = (req, res) => {
   const { mail, contraseña } = req.body

@@ -11,6 +11,7 @@ const ViewUsuario = () => {
   const navigate = useNavigate()
   const [usuario, setUsuario] = useState([]);
   
+  
   const getUsuario = async () =>{
     try {
       const response = await axios.get(`${BASE_URL_usuarios}/${id}`)
@@ -20,12 +21,12 @@ const ViewUsuario = () => {
     }
   }
 
-
   useEffect(() => {
     getUsuario();
   }, [])
   
   if (!usuario) return <Container className="mt-4">Cargando usuario...</Container>;
+
 
   return (
     <div>
@@ -53,7 +54,11 @@ const ViewUsuario = () => {
     </Container>  
     <br />
     </div>
+
+    
   )
 }
+
+
 
 export default ViewUsuario

@@ -8,7 +8,7 @@ const productosPublicosRoutes = require("./routes/ProductsCategoriaRoute.js")
 const clienteRoutes = require('./routes/clienteRoutes')
 const usuariosRoutes = require('./routes/usuariosRoutes')
 const pedidoRoutes = require('./routes/pedidoRoutes');
-
+const medioPagoRoutes = require('./routes/medioPagoRoutes');
 //Se instancia la libreria express
 const app = express()
 
@@ -24,6 +24,7 @@ app.use("/api", productosPublicosRoutes);
 app.use('/api/clientes', clienteRoutes);
 app.use('/Usuarios',usuariosRoutes)
 app.use('/api/pedidos', pedidoRoutes);
+app.use('/api/mediopago', medioPagoRoutes);
 
 
 app.get("/", (req, res) => {

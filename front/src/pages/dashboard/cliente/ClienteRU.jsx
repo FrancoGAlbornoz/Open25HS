@@ -5,6 +5,7 @@ import MainClient from '../../../components/Cliente/MainCliente';
 import EditClient from '../../../components/Cliente/EditCliente';
 
 const ClienteRU = () => {
+  // CLIENTES SOLO PUEDE VER SUS DATOS Y EDITARLOS-
   return (
     <Routes>
       <Route path="/perfil" element={<MainClient />} />

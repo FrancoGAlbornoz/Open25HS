@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import useUserStore from '../store/useLoginStore';
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 const Login = () => {
-
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({ mail: '', contraseña: '' });
   const [error, setError] = useState('');
   const user = useUserStore(state => state.user);
@@ -15,7 +17,7 @@ const Login = () => {
   };
 
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -26,26 +28,25 @@ const handleSubmit = async (e) => {
     }
 
     try {
-      const res = await fetch('http://localhost:8000/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mail, contraseña }),
+      const res = await axios.post('http://localhost:8000/login', {
+        mail,
+        contraseña
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.message || 'Correo o contraseña incorrectos.');
-        return;
+      const data = res.data;
+      setUser(data); // Zustand
+    } 
+    catch (err) {
+      if (err.response && err.response.data) {
+        setError(err.response.data.message || 'Correo o contraseña incorrectos.');
+      } else {
+        setError('Error de conexión con el servidor.');
       }
-
-      setUser(data); // guardamos usuario y rol en Zustand
-    } catch {
-      setError('Error de conexión con el servidor.');
     }
-  };
   
-
+  }
+  
+  //-------------------------------------
   return (
     <div>
       <Container className="my-5">
@@ -53,7 +54,7 @@ const handleSubmit = async (e) => {
         <Col md={6}>
           <h2 className="mb-4 text-center">Iniciar Sesión</h2>
 
-          {user && <Alert variant="success">¡Inicio de sesión exitoso! Bienvenido {user.nombre}</Alert>}
+          {user && <Alert variant="success">¡Inicio de sesión exitoso! Bienvenido {user.nombre}</Alert> && navigate("/")}
           {error && <Alert variant="danger">{error}</Alert>}
 
           {!user && (

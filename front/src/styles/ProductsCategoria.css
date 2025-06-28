@@ -1,0 +1,66 @@
+/* ProductosModal.css */
+
+.modal-content {
+    border-radius: 12px;
+    padding: 20px;
+    background: #fefefe;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .modal-title {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #2c3e50;
+  }
+  
+  .modal-body img {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-body p {
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 1rem;
+  }
+  
+  .btn-success {
+    background: #27ae60;
+    border: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-success:hover {
+    background: #219150;
+  }
+  
+  .btn-outline-secondary {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-weight: 700;
+    color: #27ae60;
+    border-color: #27ae60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #27ae60;
+    color: white;
+    border-color: #27ae60;
+  }
+  

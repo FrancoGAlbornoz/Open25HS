@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import useLoginStore from "../../store/useLoginStore";
 import { Form, Button, Container, Card, Row, Col } from "react-bootstrap";
 import { BASE_URL_usuarios } from "../../constants/constant";
 
 const EditUsuario = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const user = useLoginStore((state) => state.user);
+  console.log(user)
 
   const [usuario, setUsuario] = useState({
     nombre: "",
@@ -33,7 +35,8 @@ const EditUsuario = () => {
     e.preventDefault();
     try {
       await axios.put(`${BASE_URL_usuarios}/${id}`, usuario);
-      navigate("/usuarios");
+      //navigate("/Usuarios");
+      navigate(user.rol === 'Administrador' ? '/dashboard-admin/empleados' : '/dashboard-empleados/productos')
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
     }
@@ -68,7 +71,7 @@ const EditUsuario = () => {
               </Row>
 
               <div className="d-grid">
-                <Button variant="success" type="submit">Guardar Cambios</Button>
+                <Button variant="success" type="submit" >Guardar Cambios</Button>
               </div>
             </Form>
           </Card.Body>

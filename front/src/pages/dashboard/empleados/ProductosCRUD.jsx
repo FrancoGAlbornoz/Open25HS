@@ -6,6 +6,7 @@ import ViewProduct from '../../../components/Producto/ViewProduct';
 import MainProducts from '../../../components/Producto/MainProducts';
 
 const ProductosCRUD = () => {
+  // EMPLEADOS SOLO PUEDE VER CRUD DE PRODUCTOS- 
   return (
     <Routes>
       <Route path="/" element={<MainProducts />} />

@@ -16,9 +16,11 @@ const useLoginStore = create(
           Administrador: {
             Producto: ['view', 'create', 'edit', 'delete'],
             Usuario: ['view', 'edit', 'create', 'delete'],
+            Pedido: ['view', 'edit', 'delete'], 
           },
           Empleado: {
             Producto: ['view', 'create', 'edit', 'delete'],
+            Pedido: ['view', 'edit', 'delete'], 
           },
           Cliente: {
             Producto: ['view'],

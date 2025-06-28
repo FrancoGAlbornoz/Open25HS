@@ -1,11 +1,12 @@
-const {connection} = require('../Database/config');
+const {connection} = require('../Database/config')
+
 
 // Crrear un nuevo cliente
 const createCliente = (req,res) =>{
   const {nombre, mail, telefono, direccion,contraseña} = req.body
 
   const query = `INSERT INTO Cliente (nombre, mail, telefono, direccion, contraseña, idRol) VALUES (?,?,?,?,?,3)` 
-  const values = [nombre,mail, telefono,direccion,contraseña];
+  const values = [nombre,mail, telefono,direccion,contraseña]
 
   connection.query(query,values, (error,results)=>{
     if (error) throw error
@@ -37,14 +38,14 @@ const getClienteById = (req, res) => {
 const updateCliente = (req,res) =>{
   const id = req.params.id;
 
-  const { nombre, direccion, telefono, mail } = req.body;
+  const { nombre, direccion, telefono, mail } = req.body
 
   const query = `UPDATE Cliente SET nombre = ?,  direccion = ?, telefono = ?, mail = ? WHERE idCliente = ?`
   const values = [nombre,  direccion, telefono, mail, id]
 
   connection.query(query, values, (error, results) => {
     if (error) throw error
-      res.json({ message: "Datos actualizados", affectedRows: results.affectedRows });
+      res.json({ message: "Datos actualizados", affectedRows: results.affectedRows })
   });
 
 }
