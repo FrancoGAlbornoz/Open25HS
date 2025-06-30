@@ -3,7 +3,7 @@ const { connection } = require("../Database/config.js")
 const loginUser = (req, res) => {
   const { mail, contraseña } = req.body
 
-  // Buscar primero en "Usuario"
+  // Buscar primero en tabla usuario
   const userQuery = `
     SELECT u.*, r.nombre as rol
     FROM Usuario u

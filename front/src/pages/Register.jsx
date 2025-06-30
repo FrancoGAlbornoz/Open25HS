@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from 'react'
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
 
@@ -17,22 +17,22 @@ const Register = () => {
     confirmarPassword: '',
   });
 
-  const [registrado, setRegistrado] = useState(false);
-  const [error, setError] = useState('');
+  const [registrado, setRegistrado] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((previo) => ({ ...previo, [name]: value,}));
+    const { name, value } = e.target
+    setFormData((previo) => ({ ...previo, [name]: value,}))
   };
 
   
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setRegistrado(false);
+    e.preventDefault()
+    setError('')
+    setRegistrado(false)
 
     if (formData.contraseña !== formData.confirmarPassword) {
-      setError('Las contraseñas no coinciden.');
+      setError('Las contraseñas no coinciden.')
       return;
     }
 
@@ -47,10 +47,10 @@ const Register = () => {
 
     try {
       //Registramos cliente en la bd. con axios.post
-      const res = await axios.post('http://localhost:8000/api/clientes', nuevoCliente);
-      console.log('Cliente registrado:', res.data);
+      const res = await axios.post('http://localhost:8000/api/clientes', nuevoCliente)
+      console.log('Cliente registrado:', res.data)
 
-      setRegistrado(true);
+      setRegistrado(true)
       setFormData({
         nombre: '',
         mail: '',
@@ -62,12 +62,12 @@ const Register = () => {
 
       // Redirigir al login
       setTimeout(() => {
-        navigate('/login');
+        navigate('/login')
       }, 1500);
 
     } catch (err) {
       console.error('Error al registrar:', err);
-      const msg = err.response?.data?.error || 'Error al registrarse.';
+      const msg = err.response?.data?.error || 'Error al registrarse.'
       setError(msg);
     }
   };

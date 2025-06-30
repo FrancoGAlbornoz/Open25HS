@@ -19,18 +19,18 @@ const CreateUsuario = () => {
   )
 
   const handleChange = (e) => {
-    setUsuario({ ...usuario, [e.target.name]: e.target.value });
+    setUsuario({ ...usuario, [e.target.name]: e.target.value })
   };
 
   //agrega a nuestra base de datos el usuario nuevo
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       await axios.post(BASE_URL_usuarios, usuario);
-      navigate("/dashboard-admin/empleados"); 
+      navigate("/dashboard-admin/empleados")
       alert("Usuario creado correctamente")
     } catch (error) {
-      console.error("Error al crear usuario:", error);
+      console.error("Error al crear usuario:", error)
     }
   };
 

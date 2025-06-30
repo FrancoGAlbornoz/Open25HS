@@ -6,24 +6,24 @@ import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({ mail: '', contraseña: '' });
-  const [error, setError] = useState('');
-  const user = useUserStore(state => state.user);
-  const setUser = useUserStore(state => state.setUser);
+  const [formData, setFormData] = useState({ mail: '', contraseña: '' })
+  const [error, setError] = useState('')
+  const user = useUserStore(state => state.user)
+  const setUser = useUserStore(state => state.setUser)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }))
   };
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+    e.preventDefault()
+    setError('')
 
     const { mail, contraseña } = formData;
     if (!mail || !contraseña) {
-      setError('Por favor completá todos los campos.');
+      setError('Por favor completá todos los campos.')
       return;
     }
 
@@ -34,13 +34,13 @@ const Login = () => {
       });
 
       const data = res.data;
-      setUser(data); // Zustand
+      setUser(data) // Zustand
     } 
     catch (err) {
       if (err.response && err.response.data) {
-        setError(err.response.data.message || 'Correo o contraseña incorrectos.');
+        setError(err.response.data.message || 'Correo o contraseña incorrectos.')
       } else {
-        setError('Error de conexión con el servidor.');
+        setError('Error de conexión con el servidor.')
       }
     }
   

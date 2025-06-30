@@ -40,7 +40,7 @@ const PerfilCliente = () => {
       <p><strong>Direccion:</strong> {cliente.direccion}</p>
       <p><strong>Telefono:</strong> {cliente.telefono}</p>
       <p><strong>Email:</strong> {cliente.mail}</p>
-      {/* Agregá más campos si querés */}
+      
       <div className="mt-4">
         <Button variant="primary" onClick={() => navigate('/dashboard-cliente/editar')}>Editar perfil</Button>
       </div>

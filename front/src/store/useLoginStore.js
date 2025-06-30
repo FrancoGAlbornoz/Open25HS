@@ -1,5 +1,8 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware' 
+// persistsirve para guardar el estado del usuario en el almacenamiento local del navegador
+
+//
 
 const useLoginStore = create(
   persist(
@@ -7,11 +10,13 @@ const useLoginStore = create(
       user: null,
       setUser: (userData) => set({ user: userData }),
       clearUser: () => set({ user: null }),
-
+      //verifica si el usuario tiene permisos para realizar una acción en una tabla específica
+      //recive accion y tabl, acciones a realizar en una tabla especifica
       hasPermission: (action, table) => {
-        const { user } = get();
-        if (!user) return false;
+        const { user } = get()
+        if (!user) return false
 
+        // Permisos por rol y acción
         const permissions = {
           Administrador: {
             Producto: ['view', 'create', 'edit', 'delete'],
@@ -29,7 +34,7 @@ const useLoginStore = create(
           },
         };
 
-        return permissions[user.rol]?.[table]?.includes(action);
+        return permissions[user.rol]?.[table]?.includes(action)
       },
     }),
     {

@@ -68,11 +68,7 @@ const Header = () => {
                       boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
                     }}
                   >
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Buscar productos..."
+                    <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Buscar productos..."
                       style={{
                         border: '1px solid #ccc',
                         borderRadius: '4px',
@@ -126,12 +122,12 @@ const Header = () => {
                 className="nav-item"
                 onClick={() => navigate(user.rol === 'Administrador' ? '/dashboard-admin/productos' : '/dashboard-empleados/productos')}
               >
-                Ir al Dashboard
+                Ver productos
               </Button>
             )}
             {user ? (
               <>
-              {user.rol === 'Empleado' && (
+                {user.rol === 'Empleado' && (
                   <Button as={Link} variant="warning" to="/dashboard-empleados/pedidos" className="nav-item">
                     Ver pedidos
                   </Button>
@@ -145,7 +141,7 @@ const Header = () => {
                 )}
                 {user.rol === 'Administrador' && (
                   <Button as={Link} variant="warning" to="/dashboard-admin/pedidos" className="nav-item">
-                    Pedidos
+                    Ver pedidos
                   </Button>
                   
                 )}

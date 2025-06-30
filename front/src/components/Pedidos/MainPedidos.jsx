@@ -4,6 +4,9 @@ import { Table, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL_pedidos } from '../../constants/constant';
 import useLoginStore from '../../store/useLoginStore';
+import { FaEye } from 'react-icons/fa';
+import { FaEdit } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
 const MainPedidos = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -59,34 +62,31 @@ const MainPedidos = () => {
               <td>{pedido.idCliente}</td>
               <td>{pedido.estado}</td>
               <td className="d-flex gap-2 justify-content-center">
-                <Button
-                  variant="outline-success"
-                  size="sm"
-                  onClick={() =>
-                    navigate(`/dashboard-admin/pedidos/view/${pedido.idPedido}`)
-                  }
-                >
-                  <i className="bi bi-eye me-1"></i> Ver
-                </Button>
+              <Button
+            variant="success"
+            size="sm"
+            onClick={() =>  navigate(`/dashboard-admin/pedidos/view/${pedido.idPedido}`)}
+          >
+            <FaEye />
+          </Button>
+        
+          <Button
+              variant="warning"
+              size="sm"
+              onClick={() => navigate(`/dashboard-admin/pedidos/edit/${pedido.idPedido}`)}
+            >
+              <FaEdit />
+            </Button>
 
-                <Button
-                  variant="outline-warning"
-                  size="sm"
-                  onClick={() =>
-                    navigate(`/dashboard-admin/pedidos/edit/${pedido.idPedido}`)
-                  }
-                >
-                  <i className="bi bi-pencil-square me-1"></i> Editar
-                </Button>
 
                 {hasPermission('delete', 'Pedido') && (
-                  <Button
-                    variant="outline-danger"
-                    size="sm"
-                    onClick={() => handleDelete(pedido.idPedido)}
-                  >
-                    <i className="bi bi-trash me-1"></i> Eliminar
-                  </Button>
+            <Button
+            variant="danger"
+            size="sm"
+            onClick={() =>  handleDelete(pedido.idPedido)}
+          >
+            <FaTrash />
+          </Button>
                 )}
               </td>
             </tr>

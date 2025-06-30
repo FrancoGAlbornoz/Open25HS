@@ -37,7 +37,6 @@ const ProductosPorCategoria = () => {
             ? categoriaProducto === nombreCategoria.toLowerCase()
             : true;
 
-          // Si hay búsqueda, ignorar categoría y solo filtrar por nombre
           return palabraBuscada ? coincideBusqueda : coincideCategoria;
         });
 
@@ -90,6 +89,7 @@ const ProductosPorCategoria = () => {
       nombre: producto.nombre,
       precio: producto.precioVenta,
       cantidad: cantidadSeleccionada,
+      stock: producto.stock, // ✅ IMPORTANTE: esta línea asegura que useCartStore valide correctamente
     });
 
     setCantidades((prev) => ({ ...prev, [producto.idProducto]: 1 }));

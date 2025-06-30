@@ -1,34 +1,43 @@
 const { connection } = require('../Database/config')
 
 const crearPedido = (req, res) => {
+  // Verifica que el cuerpo de la solicitud contenga los datos necesarios 
   const { idCliente, items, idMedioPago, observaciones } = req.body;
-
+  // Asegúrate de que idCliente, idMedioPago e items no estén vacíos
+  // y que items sea un array con al menos un producto
   if (!idCliente || !idMedioPago || !items || items.length === 0) {
     return res.status(400).json({ error: 'Faltan datos para crear el pedido' })
   }
-
+  // cambia de formato la fecha y hora
   const fecha = new Date();
   const hoyFecha = fecha.toISOString().split('T')[0];
   const hora = fecha.toTimeString().split(' ')[0];
-
+  // Verifica que cada producto tenga un idProducto, cantidad y precio
   let productosVerificados = 0;
   let totalCompra = 0;
 
+  //for para recorrer los productos en items en carrito
+
   for (let i = 0; i < items.length; i++) {
+    
     const item = items[i];
     const queryStock = 'SELECT stock FROM Producto WHERE idProducto = ?';
 
+    
     connection.query(queryStock, [item.idProducto], (err, results) => {
+      //maneja errores de la consulta
+      // si hay un error al consultar el stock
       if (err) {
         console.error('Error al verificar stock:', err);
         return res.status(500).json({ error: 'Error al verificar stock' });
       }
-
+      //si no se encuentra el producto con el idProductoq
       if (results.length === 0) {
         return res.status(404).json({ error: `Producto con ID ${item.idProducto} no encontrado` });
       }
 
       const stockDisponible = results[0].stock;
+      // si el stock disponible es menor que la cantidad solicitada
       if (stockDisponible < item.cantidad) {
         return res.status(400).json({ error: `Stock insuficiente para el producto con ID ${item.idProducto}` });
       }
@@ -36,8 +45,9 @@ const crearPedido = (req, res) => {
       totalCompra += item.precio * item.cantidad;
       productosVerificados++;
 
+      // Actualizar el stock del producto
       if (productosVerificados === items.length) {
-        // Insertar el pedido (ahora incluye observaciones)
+        // Insertar el pedido (ahora incluye observaciones(nueva columna para completar con los requerimientos))
         const pedidoQuery = 'INSERT INTO Pedido (fecha, hora, idCliente, estado, observaciones) VALUES (?, ?, ?, ?, ?)';
         connection.query(
           pedidoQuery,
@@ -50,7 +60,7 @@ const crearPedido = (req, res) => {
 
             const idPedido = result.insertId;
 
-            // Insertar los detalles del pedido
+            //insertar los detalles del pedido
             const detalleQuery = `
               INSERT INTO DetallePedido (idPedido, idProducto, cantidad, subtotal) VALUES ?
             `;
@@ -67,7 +77,7 @@ const crearPedido = (req, res) => {
                 return res.status(500).json({ error: 'Error al insertar detalles' });
               }
 
-              // Insertar el pago
+              //insertar el pago
               const pagoQuery = `
                 INSERT INTO Pago (fechaPago, idPedido, idMedioPago, total) VALUES (?, ?, ?, ?)
               `;
@@ -87,6 +97,8 @@ const crearPedido = (req, res) => {
   }
 };
 
+
+//funcion para obtener los pedidos de un cliente específico y mostrarlos en su perfil 
 const getPedidosByCliente = (req, res) => {
   const idCliente = req.params.id;
 
@@ -114,7 +126,11 @@ const getPedidosByCliente = (req, res) => {
   })
 }
 
-// funciones exclusivas para el administrador
+
+
+//funciones exclusivas para el administrador
+
+//función para obtener todos los pedidos y sus detalles
 const getAllPedidos = (req, res) => {
   const query = "SELECT idPedido, fecha, hora, idCliente, estado, observaciones FROM Pedido ORDER BY fecha DESC, hora DESC";
   connection.query(query, (error, results) => {
@@ -125,7 +141,7 @@ const getAllPedidos = (req, res) => {
     res.json(results);
   });
 };
-
+//funcion para obtener un pedido por su ID
 const getPedidoById = (req, res) => {
   const id = req.params.id;
   const query = "SELECT idPedido, fecha, hora, idCliente, estado, observaciones FROM Pedido WHERE idPedido = ?";
@@ -140,7 +156,7 @@ const getPedidoById = (req, res) => {
     res.json(results[0]);
   });
 };
-
+//funcion para actualizar un pedido por su ID
 const updatePedido = (req, res) => {
   const id = req.params.id;
   let { fecha, hora, idCliente, estado, observaciones } = req.body;

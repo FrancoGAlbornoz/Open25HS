@@ -1,5 +1,7 @@
 const { connection } = require("../Database/config")
 
+
+//modal para ver productos públicos
 const getProductosPublicos = (req, res) => {
   const sql = `
     SELECT 

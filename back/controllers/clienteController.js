@@ -15,7 +15,8 @@ const createCliente = (req,res) =>{
 
 
 }
-
+//Cliente por ID
+// Obtiene un cliente por su ID 
 const getClienteById = (req, res) => {
   const id = req.params.id
 
@@ -34,7 +35,7 @@ const getClienteById = (req, res) => {
   });
 };
 
-
+//actualiza un cliente por su ID
 const updateCliente = (req,res) =>{
   const id = req.params.id;
 

@@ -59,7 +59,8 @@ const Carrito = () => {
     }
   };
 
-  const medioPagoNombre = mediosPago.find(m => m.idMedioPago === medioPagoSeleccionado)?.nombre || '';
+  const medioPagoNombre = mediosPago.find(m => m.idMedioPago === Number(medioPagoSeleccionado))?.nombre || '';
+
 
   return (
     <div className="container mt-4">
