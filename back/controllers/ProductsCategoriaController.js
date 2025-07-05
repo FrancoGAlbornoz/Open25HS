@@ -17,6 +17,7 @@ const getProductosPublicos = (req, res) => {
   connection.query(sql, (error, results) => {
     if (error) throw error;
     res.json(results);
+    console.log(results);
   });
 };
 

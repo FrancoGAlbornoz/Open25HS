@@ -4,4 +4,5 @@ const { getProductosPublicos } = require("../controllers/ProductsCategoriaContro
 
 router.get("/productos", getProductosPublicos);
 
+
 module.exports = router;

@@ -4,7 +4,7 @@ const mysql = require("mysql")
 const connection = mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:"123456789",
+    password:"1234",
     database:"drugstore25"
 })
 //Me informa si hay un error o si se conecta a la bd correctamente.

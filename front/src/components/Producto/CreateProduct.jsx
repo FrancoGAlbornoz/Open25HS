@@ -144,6 +144,7 @@ const CreateProduct = () => {
         <Button type="submit" variant="success">Crear Producto</Button>
       </Form>
     </Container>
+    <br />
     </div>
   )
 }

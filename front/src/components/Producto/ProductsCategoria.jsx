@@ -4,6 +4,7 @@ import axios from "axios";
 import { Button, Col, Row, Card, Modal } from "react-bootstrap";
 import useCartStore from "../../store/useCartStore";
 import useLoginStore from "../../store/useLoginStore";
+import Swal from "sweetalert2"; 
 import "../../styles/ProductsCategoria.css";
 
 const ProductosPorCategoria = () => {
@@ -37,7 +38,6 @@ const ProductosPorCategoria = () => {
             ? categoriaProducto === nombreCategoria.toLowerCase()
             : true;
 
-          // Si hay búsqueda, ignorar categoría y solo filtrar por nombre
           return palabraBuscada ? coincideBusqueda : coincideCategoria;
         });
 
@@ -81,7 +81,12 @@ const ProductosPorCategoria = () => {
     const cantidadSeleccionada = cantidades[producto.idProducto] || 1;
 
     if (cantidadEnCarrito + cantidadSeleccionada > producto.stock) {
-      alert(`Solo hay ${producto.stock} unidades disponibles.`);
+      Swal.fire({
+        icon: "warning",
+        title: "Stock insuficiente",
+        text: `Solo hay ${producto.stock} unidades disponibles.`,
+        confirmButtonColor: "#d33",
+      });
       return;
     }
 
@@ -90,10 +95,19 @@ const ProductosPorCategoria = () => {
       nombre: producto.nombre,
       precio: producto.precioVenta,
       cantidad: cantidadSeleccionada,
+      stock : producto.stock,
     });
 
     setCantidades((prev) => ({ ...prev, [producto.idProducto]: 1 }));
     cerrarModal();
+
+    Swal.fire({
+      icon: "success",
+      title: "Producto agregado",
+      text: `${producto.nombre} se agregó al carrito correctamente.`,
+      timer: 1800,
+      showConfirmButton: false,
+    });
   };
 
   return (
@@ -113,11 +127,11 @@ const ProductosPorCategoria = () => {
 
             return (
               <Col key={producto.idProducto}>
-                <Card
-                  className="h-100"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => abrirModal(producto)}
-                >
+                  <Card
+                    className="h-100 tarjeta-hover"
+                    onClick={() => abrirModal(producto)}
+                    style={{ cursor: "pointer" }}
+                  >
                   <Card.Img
                     variant="top"
                     src={producto.imagen}

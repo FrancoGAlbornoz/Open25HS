@@ -126,7 +126,7 @@ const Header = () => {
                 className="nav-item"
                 onClick={() => navigate(user.rol === 'Administrador' ? '/dashboard-admin/productos' : '/dashboard-empleados/productos')}
               >
-                Ir al Dashboard
+                Ver Productos
               </Button>
             )}
             {user ? (
@@ -145,7 +145,7 @@ const Header = () => {
                 )}
                 {user.rol === 'Administrador' && (
                   <Button as={Link} variant="warning" to="/dashboard-admin/pedidos" className="nav-item">
-                    Pedidos
+                    Ver Pedidos
                   </Button>
                   
                 )}

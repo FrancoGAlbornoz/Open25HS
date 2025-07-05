@@ -64,3 +64,13 @@
     border-color: #27ae60;
   }
   
+  .tarjeta-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .tarjeta-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    position: relative;
+  }
