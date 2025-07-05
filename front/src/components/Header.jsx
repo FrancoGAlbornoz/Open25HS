@@ -68,11 +68,7 @@ const Header = () => {
                       boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
                     }}
                   >
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Buscar productos..."
+                    <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Buscar productos..."
                       style={{
                         border: '1px solid #ccc',
                         borderRadius: '4px',
@@ -126,12 +122,16 @@ const Header = () => {
                 className="nav-item"
                 onClick={() => navigate(user.rol === 'Administrador' ? '/dashboard-admin/productos' : '/dashboard-empleados/productos')}
               >
+<<<<<<< HEAD
                 Ver Productos
+=======
+                Ver productos
+>>>>>>> 8f48151c4d38745696902164cea74a74c859a300
               </Button>
             )}
             {user ? (
               <>
-              {user.rol === 'Empleado' && (
+                {user.rol === 'Empleado' && (
                   <Button as={Link} variant="warning" to="/dashboard-empleados/pedidos" className="nav-item">
                     Ver pedidos
                   </Button>
@@ -145,7 +145,11 @@ const Header = () => {
                 )}
                 {user.rol === 'Administrador' && (
                   <Button as={Link} variant="warning" to="/dashboard-admin/pedidos" className="nav-item">
+<<<<<<< HEAD
                     Ver Pedidos
+=======
+                    Ver pedidos
+>>>>>>> 8f48151c4d38745696902164cea74a74c859a300
                   </Button>
                   
                 )}

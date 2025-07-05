@@ -95,8 +95,9 @@ const ProductosPorCategoria = () => {
       nombre: producto.nombre,
       precio: producto.precioVenta,
       cantidad: cantidadSeleccionada,
-      stock : producto.stock,
+      stock: producto.stock, // Asegura validación de stock en el store
     });
+
 
     setCantidades((prev) => ({ ...prev, [producto.idProducto]: 1 }));
     cerrarModal();

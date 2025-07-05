@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import Swal from 'sweetalert2';
+=======
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+import Swal from 'sweetalert2'
+>>>>>>> 8f48151c4d38745696902164cea74a74c859a300
 
 const useCartStore = create(
   persist(
@@ -8,8 +14,13 @@ const useCartStore = create(
       items: [],
 
       agregarAlCarrito: (producto) => {
+<<<<<<< HEAD
         const { idProducto, cantidad = 1, stock } = producto;
         const existe = get().items.find(p => p.idProducto === idProducto);
+=======
+        const { idProducto, cantidad = 1, stock } = producto
+        const existe = get().items.find(p => p.idProducto === idProducto)
+>>>>>>> 8f48151c4d38745696902164cea74a74c859a300
 
         if (existe) {
           if (existe.cantidad + cantidad > stock) {

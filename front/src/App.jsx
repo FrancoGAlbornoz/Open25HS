@@ -1,41 +1,39 @@
 //react-router-dom
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 //Paginas y rutas
-import ProtectedRoute from './components/ProtectedRoute';
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Error from "./pages/Error";
+import ProtectedRoute from './components/ProtectedRoute'
+import Home from "./pages/Home"
+import Register from "./pages/Register"
+import Login from "./pages/Login"
+import Error from "./pages/Error"
 import Carrito from "./pages/Carrito"
-import {home,  register, login} from "./routes/path";
+import {home,  register, login} from "./routes/path"
 
 //Componentes de CRUD de produtos
-import ViewProduct from "./components/Producto/ViewProduct";
-import CreateProduct from "./components/Producto/CreateProduct";
-import EditProduct from "./components/Producto/EditProduct";
+import ViewProduct from "./components/Producto/ViewProduct"
+import CreateProduct from "./components/Producto/CreateProduct"
+import EditProduct from "./components/Producto/EditProduct"
 
 //Componentes de CRUD de users
-import ViewUsuario from "./components/Usuario/ViewUsuario";
-import CreateUsuario from "./components/Usuario/CreateUsuario";
-import EditUsuario from "./components/Usuario/EditUsuario";
+import ViewUsuario from "./components/Usuario/ViewUsuario"
+import CreateUsuario from "./components/Usuario/CreateUsuario"
+import EditUsuario from "./components/Usuario/EditUsuario"
 
 //Todos los productos
-import ProductosPorCategoria from "./components/Producto/ProductsCategoria";
+import ProductosPorCategoria from "./components/Producto/ProductsCategoria"
 
 //Componentes basico header y footer
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 //CRUDS(admin-empleado-cliente)
-import ProductosCRUDEmpleado from './pages/dashboard/empleados/ProductosCRUD';
-import ProductosCRUDAdmin from './pages/dashboard/admin/ProductosCRUD';
-import UsuariosCRUDAdmin from './pages/dashboard/admin/UsuariosCRUD';
-import PedidosCRUDAdmin from "./pages/dashboard/admin/PedidosCRUD";
-import PedidosCRUDEmpleado from './pages/dashboard/empleados/PedidosCRUD';
-import ClienteRU from "./pages/dashboard/cliente/ClienteRU";
+import ProductosCRUDEmpleado from './pages/dashboard/empleados/ProductosCRUD'
+import ProductosCRUDAdmin from './pages/dashboard/admin/ProductosCRUD'
+import UsuariosCRUDAdmin from './pages/dashboard/admin/UsuariosCRUD'
+import PedidosCRUDAdmin from "./pages/dashboard/admin/PedidosCRUD"
+import PedidosCRUDEmpleado from './pages/dashboard/empleados/PedidosCRUD'
+import ClienteRU from "./pages/dashboard/cliente/ClienteRU"
 
-
-//CRUDS de pedidos
 
 
 

@@ -4,9 +4,7 @@ import { Table, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL_pedidos } from '../../constants/constant';
 import useLoginStore from '../../store/useLoginStore';
-import { FaEye } from 'react-icons/fa';
-import { FaEdit } from 'react-icons/fa';
-import { FaTrash } from 'react-icons/fa';
+import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const MainPedidos = () => {
@@ -14,7 +12,6 @@ const MainPedidos = () => {
   const navigate = useNavigate();
   const hasPermission = useLoginStore((state) => state.hasPermission);
 
-  // Trae todos los pedidos al montar el componente
   const getPedidos = async () => {
     try {
       const response = await axios.get(BASE_URL_pedidos);
@@ -24,7 +21,6 @@ const MainPedidos = () => {
     }
   };
 
-  // Elimina un pedido por su ID (con confirmación)
   const handleDelete = async (id) => {
     Swal.fire({
       title: '¿Estás seguro?',
@@ -40,7 +36,7 @@ const MainPedidos = () => {
         try {
           await axios.delete(`${BASE_URL_pedidos}/${id}`);
           Swal.fire('¡Eliminado!', 'El pedido fue borrado correctamente.', 'success');
-          getPedidos(); // Refrescar la tabla
+          getPedidos(); // Recargar la lista
         } catch (error) {
           console.error("Error al eliminar el pedido:", error);
           Swal.fire('Error', 'Hubo un problema al eliminar el pedido.', 'error');
@@ -76,31 +72,28 @@ const MainPedidos = () => {
               <td>{pedido.idCliente}</td>
               <td>{pedido.estado}</td>
               <td className="d-flex gap-2 justify-content-center">
-              <Button
-            variant="success"
-            size="sm"
-            onClick={() =>  navigate(`/dashboard-admin/pedidos/view/${pedido.idPedido}`)}
-          >
-            <FaEye />
-          </Button>
-        
-          <Button
-              variant="warning"
-              size="sm"
-              onClick={() => navigate(`/dashboard-admin/pedidos/edit/${pedido.idPedido}`)}
-            >
-              <FaEdit />
-            </Button>
-
-
+                <Button
+                  variant="success"
+                  size="sm"
+                  onClick={() => navigate(`/dashboard-admin/pedidos/view/${pedido.idPedido}`)}
+                >
+                  <FaEye />
+                </Button>
+                <Button
+                  variant="warning"
+                  size="sm"
+                  onClick={() => navigate(`/dashboard-admin/pedidos/edit/${pedido.idPedido}`)}
+                >
+                  <FaEdit />
+                </Button>
                 {hasPermission('delete', 'Pedido') && (
-            <Button
-            variant="danger"
-            size="sm"
-            onClick={() =>  handleDelete(pedido.idPedido)}
-          >
-            <FaTrash />
-          </Button>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDelete(pedido.idPedido)}
+                  >
+                    <FaTrash />
+                  </Button>
                 )}
               </td>
             </tr>

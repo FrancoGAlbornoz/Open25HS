@@ -2,38 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useLoginStore from '../../store/useLoginStore';
-import { Button,Container, Row, Col, Card } from 'react-bootstrap';
+import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import "../../styles/MainCliente.css";
 
 const PerfilCliente = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [cliente, setCliente] = useState(null);
-  const user = useLoginStore(state => state.user); // Este user debería tener el idCliente
   const [pedidos, setPedidos] = useState([]);
+  const user = useLoginStore(state => state.user); // user.idCliente esperado
 
   const getPedidos = async () => {
-  try {
-    const response = await axios.get(`http://localhost:8000/api/pedidos/cliente/${user.idCliente}`);
-    setPedidos(response.data);
-  } catch (error) {
-    console.error("Error al obtener pedidos:", error);
-  }
-};
+    try {
+      const response = await axios.get(`http://localhost:8000/api/pedidos/cliente/${user.idCliente}`);
+      setPedidos(response.data);
+    } catch (error) {
+      console.error("Error al obtener pedidos:", error);
+    }
+  };
 
   useEffect(() => {
     if (user?.idCliente) {
       axios.get(`http://localhost:8000/api/clientes/${user.idCliente}`)
         .then(res => setCliente(res.data))
         .catch(err => console.error('Error al obtener cliente', err));
-        console.log('Usuario logueado:', user);
-    };
-    getPedidos();
+      getPedidos();
+    }
   }, [user]);
 
   if (!cliente) return <p>Cargando cliente...</p>;
-  if (!pedidos) return <Container className="mt-4">Cargando usuario...</Container>;
-  
-  
+
   return (
     <Container className="mt-4">
       <h2 className="mb-4">Mi Perfil</h2>
@@ -65,7 +62,7 @@ const PerfilCliente = () => {
               <span><strong>Pedido #{p.idPedido}</strong></span>
               <span className={`estado-pedido estado-${p.estado.toLowerCase()}`}>
                 {p.estado === 'completado' ? '✅ Completado' : '🕒 Pendiente'}
-            </span>
+              </span>
             </Card.Header>
             <Card.Body>
               <Row>
@@ -81,7 +78,6 @@ const PerfilCliente = () => {
         ))
       )}
     </Container>
-    
   );
 };
 

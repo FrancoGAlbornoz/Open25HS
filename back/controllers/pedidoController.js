@@ -16,7 +16,6 @@ const crearPedido = (req, res) => {
   let stockInsuficiente = false;
   let yaRespondio = false;
 
-  // Verificamos stock para cada producto
   items.forEach((item) => {
     const queryStock = 'SELECT stock FROM Producto WHERE idProducto = ?';
 
@@ -45,7 +44,6 @@ const crearPedido = (req, res) => {
       verificados++;
 
       if (verificados === items.length && !stockInsuficiente) {
-        // Insertar Pedido
         const pedidoQuery = 'INSERT INTO Pedido (fecha, hora, idCliente, estado, observaciones) VALUES (?, ?, ?, ?, ?)';
         connection.query(pedidoQuery, [hoyFecha, hora, idCliente, 'pendiente', observaciones || 'Sin observaciones.'], (err, result) => {
           if (err) {
@@ -55,7 +53,6 @@ const crearPedido = (req, res) => {
 
           const idPedido = result.insertId;
 
-          // Insertar Detalles del Pedido
           const detalleQuery = 'INSERT INTO DetallePedido (idPedido, idProducto, cantidad, subtotal) VALUES ?';
           const detalleValues = items.map(item => [
             idPedido,
@@ -70,7 +67,6 @@ const crearPedido = (req, res) => {
               return res.status(500).json({ error: 'Error al insertar detalles' });
             }
 
-            // Actualizar Stock
             let stockActualizados = 0;
             let errorStock = false;
 
@@ -88,7 +84,6 @@ const crearPedido = (req, res) => {
                     return res.status(500).json({ error: 'Error al actualizar stock' });
                   }
 
-                  // Insertar Pago
                   const pagoQuery = 'INSERT INTO Pago (fechaPago, idPedido, idMedioPago, total) VALUES (?, ?, ?, ?)';
                   connection.query(pagoQuery, [hoyFecha, idPedido, idMedioPago, totalCompra], (err) => {
                     if (err) {
@@ -107,8 +102,6 @@ const crearPedido = (req, res) => {
     });
   });
 };
-
-// Resto del CRUD sin cambios
 
 const getPedidosByCliente = (req, res) => {
   const idCliente = req.params.id;
@@ -206,8 +199,6 @@ const getPedidoById = (req, res) => {
     });
   });
 };
-
-
 
 const updatePedido = (req, res) => {
   const id = req.params.id;
