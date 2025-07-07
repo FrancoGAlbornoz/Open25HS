@@ -167,6 +167,7 @@ const Carrito = () => {
           </Modal>
         </>
       )}
+      <br />
     </div>
   );
 };

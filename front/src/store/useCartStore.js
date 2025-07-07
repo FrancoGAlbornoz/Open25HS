@@ -1,6 +1,6 @@
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-import Swal from 'sweetalert2'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import Swal from 'sweetalert2';
 
 const useCartStore = create(
   persist(
@@ -8,12 +8,17 @@ const useCartStore = create(
       items: [],
 
       agregarAlCarrito: (producto) => {
-        const { idProducto, cantidad = 1, stock } = producto
-        const existe = get().items.find(p => p.idProducto === idProducto)
+        const { idProducto, cantidad = 1, stock } = producto;
+        const existe = get().items.find(p => p.idProducto === idProducto);
 
         if (existe) {
           if (existe.cantidad + cantidad > stock) {
-            Swal.fire({icon: 'warning', title: 'Stock insuficiente', text: `No hay stock suficiente para ${producto.nombre}`, confirmButtonColor: '#d33',});
+            Swal.fire({
+              icon: 'warning',
+              title: 'Stock insuficiente',
+              text: `No hay stock suficiente para ${producto.nombre}`,
+              confirmButtonColor: '#d33',
+            });
             return;
           }
           set({
@@ -25,7 +30,12 @@ const useCartStore = create(
           });
         } else {
           if (cantidad > stock) {
-            Swal.fire({icon: 'warning', title: 'Stock insuficiente', text: `No hay stock suficiente para ${producto.nombre}`, confirmButtonColor: '#d33',});
+            Swal.fire({
+              icon: 'warning',
+              title: 'Stock insuficiente',
+              text: `No hay stock suficiente para ${producto.nombre}`,
+              confirmButtonColor: '#d33',
+            });
             return;
           }
           set({
@@ -35,7 +45,12 @@ const useCartStore = create(
       },
 
       quitarDelCarrito: (id) => {
-        Swal.fire({ icon: 'info', title: 'Producto eliminado', timer: 1200, showConfirmButton: false,});
+        Swal.fire({
+          icon: 'info',
+          title: 'Producto eliminado',
+          timer: 1200,
+          showConfirmButton: false,
+        });
         set({
           items: get().items.filter(p => p.idProducto !== id),
         });
@@ -59,7 +74,12 @@ const useCartStore = create(
               ),
             };
           } else {
-            Swal.fire({ icon: 'error', title: 'Sin stock', text: 'No hay stock suficiente para este producto', confirmButtonColor: '#d33',});
+            Swal.fire({
+              icon: 'error',
+              title: 'Sin stock',
+              text: 'No hay stock suficiente para este producto',
+              confirmButtonColor: '#d33',
+            });
             return state;
           }
         });
