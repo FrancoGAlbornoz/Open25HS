@@ -18,7 +18,8 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleLogout = () => {
-    clearUser();
+    clearUser();//Viene de zustand y pone a user a null
+    useCartStore.getState().clearCart(); // Limpia el carrito
     navigate('/login');
   };
 

@@ -8,6 +8,9 @@ const Login = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ mail: '', contraseña: '' })
   const [error, setError] = useState('')
+
+  // Vienen de zustand
+  // useUserStore es el nombre del store que creamos en useLoginStore.js
   const user = useUserStore(state => state.user)
   const setUser = useUserStore(state => state.setUser)
 

@@ -13,12 +13,7 @@ const useCartStore = create(
 
         if (existe) {
           if (existe.cantidad + cantidad > stock) {
-            Swal.fire({
-              icon: 'warning',
-              title: 'Stock insuficiente',
-              text: `No hay stock suficiente para ${producto.nombre}`,
-              confirmButtonColor: '#d33',
-            });
+            Swal.fire({icon: 'warning', title: 'Stock insuficiente', text: `No hay stock suficiente para ${producto.nombre}`, confirmButtonColor: '#d33',});
             return;
           }
           set({
@@ -30,12 +25,7 @@ const useCartStore = create(
           });
         } else {
           if (cantidad > stock) {
-            Swal.fire({
-              icon: 'warning',
-              title: 'Stock insuficiente',
-              text: `No hay stock suficiente para ${producto.nombre}`,
-              confirmButtonColor: '#d33',
-            });
+            Swal.fire({icon: 'warning', title: 'Stock insuficiente', text: `No hay stock suficiente para ${producto.nombre}`, confirmButtonColor: '#d33',});
             return;
           }
           set({
@@ -45,12 +35,7 @@ const useCartStore = create(
       },
 
       quitarDelCarrito: (id) => {
-        Swal.fire({
-          icon: 'info',
-          title: 'Producto eliminado',
-          timer: 1200,
-          showConfirmButton: false,
-        });
+        Swal.fire({ icon: 'info', title: 'Producto eliminado', timer: 1200, showConfirmButton: false,});
         set({
           items: get().items.filter(p => p.idProducto !== id),
         });
@@ -74,12 +59,7 @@ const useCartStore = create(
               ),
             };
           } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Sin stock',
-              text: 'No hay stock suficiente para este producto',
-              confirmButtonColor: '#d33',
-            });
+            Swal.fire({ icon: 'error', title: 'Sin stock', text: 'No hay stock suficiente para este producto', confirmButtonColor: '#d33',});
             return state;
           }
         });

@@ -9,7 +9,7 @@ const getProductosPublicos = (req, res) => {
       p.nombre,
       p.precioVenta,
       p.imagen,
-      p.stock,  -- 👈 AGREGAR ESTA LÍNEA
+      p.stock,  
       c.nombre AS nombre_categoria
     FROM Producto p
     JOIN Categoria c ON p.idCategoria = c.idCategoria

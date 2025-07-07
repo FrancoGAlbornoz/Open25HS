@@ -47,12 +47,12 @@ const createProduct = (req,res) =>{
 const updateProduct = (req,res) =>{
 
     const id= req.params.id
+    const values = [nombre, descripcion, stock, precioVenta, precioCompra, idProveedor, idCategoria, idMarca, imagen,id]
 
     const {nombre, descripcion, stock, precioVenta, precioCompra, idProveedor, idCategoria, idMarca, imagen } = req.body
 
     const query = `UPDATE Producto SET nombre = ?, descripcion = ?, stock = ?, precioVenta = ?, precioCompra = ?, idProveedor = ?, idCategoria = ?, idMarca = ?, imagen = ? WHERE idProducto = ?`
 
-    const values = [nombre, descripcion, stock, precioVenta, precioCompra, idProveedor, idCategoria, idMarca, imagen,id]
 
     connection.query(query, values, (error, results) => {
         if (error) throw error

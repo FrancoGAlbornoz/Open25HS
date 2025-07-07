@@ -19,8 +19,9 @@ const crearPedido = (req, res) => {
   //for para recorrer los productos en items en carrito
 
   for (let i = 0; i < items.length; i++) {
-    
+    // item es cada producto del carrito
     const item = items[i];
+    // Select que verifica si el producto existe y obtiene su stock
     const queryStock = 'SELECT stock FROM Producto WHERE idProducto = ?';
 
     
@@ -49,10 +50,7 @@ const crearPedido = (req, res) => {
       if (productosVerificados === items.length) {
         // Insertar el pedido (ahora incluye observaciones(nueva columna para completar con los requerimientos))
         const pedidoQuery = 'INSERT INTO Pedido (fecha, hora, idCliente, estado, observaciones) VALUES (?, ?, ?, ?, ?)';
-        connection.query(
-          pedidoQuery,
-          [hoyFecha, hora, idCliente, 'pendiente', observaciones || "Sin observaciones."],
-          (err, result) => {
+        connection.query(pedidoQuery, [hoyFecha, hora, idCliente, 'pendiente', observaciones || "Sin observaciones."], (err, result) => {
             if (err) {
               console.error('Error al insertar pedido:', err);
               return res.status(500).json({ error: 'Error al insertar pedido' });
@@ -98,6 +96,14 @@ const crearPedido = (req, res) => {
 };
 
 
+
+
+
+
+
+
+
+
 //funcion para obtener los pedidos de un cliente específico y mostrarlos en su perfil 
 const getPedidosByCliente = (req, res) => {
   const idCliente = req.params.id;
@@ -125,6 +131,15 @@ const getPedidosByCliente = (req, res) => {
     res.json(results)
   })
 }
+
+
+
+
+
+
+
+
+
 
 
 
